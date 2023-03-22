@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/table.css" type="text/css">
+    <title>Tabla de datos</title>
+</head>
+<body>
+    <h1>Lista de Personas</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Edad</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% data.forEach(function(persona) { %>
+				<tr>
+					<td><%= persona.id %></td>
+					<td><%= persona.nombre %></td>
+					<td><%= persona.apellido %></td>
+					<td><%= persona.edad %></td>
+				</tr>
+			<% }); %>
+		</tbody>
+	</table>
+</body>
+</html>
