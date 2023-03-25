@@ -29,9 +29,14 @@
 } %>
 
     <%function print (){
-    for(let i=0; i < Time;i++){
-    %> <h2><%= Message%> <%= ID %></h2> <%
-    }} %>
+        if(Time % 1 != 0 ){ %>
+            <h2>Numero Invalido, por favor escoge un numero entero </h2>
+       <% } else {
+        for(let i=0; i < Time;i++){
+            %> <h2><%= Message%> <%= ID %></h2> <%
+            }
+       }
+    } %>
     
 </body>
 </html>
