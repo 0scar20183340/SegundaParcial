@@ -1,24 +1,27 @@
 const express = require('express'); //inyecccion de la dependencia
 const bodyParser = require('body-parser'); // Importa body-parser //POR ESTA MIERDA NO QUERIA AGARRAR EL DISPLAYDATA
+const mongoose = require('mongoose'); //inyecccion de la dependencia
+require("dotenv").config(); //inyecccion de la dependencia
+// const useRoutes = require("./routes/user"); //inyecccion de la dependencia
+const studentRoutes = require("./routes/student"); //inyecccion de la dependencia
+const personRoutes = require("./routes/person"); //inyecccion de la dependencia
+
 let app = express();
+let PORT = process.env.PORT || 3000;
 
 // instale body-perser
 //Configure el middleware body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-let PORT = process.env.PORT || 3000;
 app.use('/assets', express.static(__dirname + '/public')); //contenido estatico
 
 
-// Esto sirve para definir las rutas que serán manejadas por el servidor 
-// web. En este caso, el código está requiriendo dos archivos JavaScript, 
-// person.js y student.js, que se encuentran en la carpeta routes. Estos 
-// archivos contienen las rutas que serán utilizadas para manejar las 
-// solicitudes HTTP en el servidor.
-// Luego, esas rutas son agregadas a la aplicación Express usando el 
-// método use(), lo que permite que las solicitudes sean manejadas por el 
-// servidor web.
+mongoose
+.connect(process.env.MONGODB_URI)
+.then(() => console.log('DB connected'))
+.catch(err => console.error(err))
+
+
 
 let personsRoute = require('./routes/person.js');
 let studentRoute = require('./routes/student.js')
@@ -36,8 +39,6 @@ let studentRoute = require('./routes/student.js')
 app.set('view engine', 'ejs');
 app.use(personsRoute);
 app.use(studentRoute);
-
-
 
 
 app.listen(PORT, () => {

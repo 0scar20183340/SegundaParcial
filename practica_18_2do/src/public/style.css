@@ -1,0 +1,50 @@
+/* Define el color de fondo para toda la página */
+body {
+    background-color: #eee;
+  }
+  
+  /* Define el estilo para la tabla */
+  table {
+    border-collapse: collapse;
+    margin: 20px auto;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Define el estilo para las celdas de encabezado */
+  th {
+    background-color: #9b59b6;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  /* Define el estilo para las celdas de datos */
+  td {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  /* Define el estilo para la primera celda del encabezado */
+  th:first-child {
+    border-top-left-radius: 10px;
+  }
+  
+  /* Define el estilo para la última celda del encabezado */
+  th:last-child {
+    border-top-right-radius: 10px;
+  }
+  
+  /* Define el estilo para la primera celda de datos */
+  td:first-child {
+    font-weight: bold;
+  }
+  
+  /* Define el estilo para las filas impares */
+  tr:nth-child(odd) {
+    background-color: #f2f2f2;
+  }
+  

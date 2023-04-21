@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href=/assets/style.css type=text/css rel=stylesheet /> 
+    <title>Document</title>
+    <!--CDB de JQyery-->
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+</head>
+<body>
+   <h1>Prueba de la llamada a JQuery</h1>
+   <script>
+    //llamada al endpoint
+    $.ajax({
+        type: "POST",
+        // nombre del endpoint
+        url: "/personJson",
+        // datos que se envian ""
+        data:JSON.stringify({nombre: 'Juan', apellido: 'Parra'}),
+        // tipo de datos que se espera recibir
+        dataType: 'json',
+        // tipo de contenido
+        contentType: "application/json"
+    });
+   </script>
+</body>
+</html>
