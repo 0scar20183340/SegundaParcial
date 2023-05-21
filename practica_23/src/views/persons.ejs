@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Personas</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #4caf50;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #4caf50;
+        color: #fff;
+      }
+
+      tfoot {
+        text-align: center;
+        font-weight: bold;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 3px;
+        cursor: pointer;
+        border: none;
+        transition: background-color 0.3s ease;
+        font-size: 16px;
+      }
+
+      .btn:hover {
+        background-color: #45a049;
+      }
+
+      .search-form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .search-form label {
+        margin-right: 10px;
+        font-weight: bold;
+      }
+
+      .search-form input[type="text"] {
+        padding: 5px;
+        border-radius: 3px;
+        border: 1px solid #ddd;
+        transition: width 0.3s ease;
+      }
+
+      .search-form input[type="text"].expanded {
+        width: 200px;
+      }
+
+      .search-form input[type="submit"],
+      .search-form input[type="reset"] {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
+
+      .search-form input[type="submit"]:hover,
+      .search-form input[type="reset"]:hover {
+        background-color: #45a049;
+      }
+
+      .search-form .btn-separator {
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="/find" method="POST" class="search-form">
+      <label for="criteria">CRITERIO</label>
+      <input type="text" name="criteria" id="criteria" />
+      <input type="submit" value="Buscar" class="btn" />
+      <span class="btn-separator"></span>
+      <input
+        type="reset"
+        value="Limpiar"
+        onclick="window.location.href='/gente'"
+        class="btn"
+      />
+    </form>
+
+    <h1>Lista de Personas</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>NSS</th>
+          <th>Nombre</th>
+          <th>Edad</th>
+          <th>Tipo de Sangre</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (let i = 0; i < persons.length; i++) { %>
+        <tr>
+          <td><%= persons[i].nss %></td>
+          <td><%= persons[i].name %></td>
+          <td><%= persons[i].age %></td>
+          <td><%= persons[i].bloodGroup %></td>
+
+          <td>
+            <a href="/findById/<%= persons[i]._id %>" class="btn">Actualizar</a>
+            <form
+              action="/gente/<%=persons[i]._id %>"
+              method="POST"
+              style="display: inline"
+            >
+              <input type="hidden" name="_method" value="DELETE" />
+              <button type="submit" class="btn">Eliminar</button>
+            </form>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <footer>
+      <a href="/addPerson" class="btn">Agregar</a>
+    </footer>
+  </body>
+</html>
