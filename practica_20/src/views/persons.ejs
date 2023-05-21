@@ -4,54 +4,85 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-        crossorigin="anonymous"></script>
-    <title>Personas</title>
+    <title>Lista de Personas</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #4CAF50;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+tfoot {
+    text-align: center;
+    font-weight: bold;
+}
+
+a.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+a.btn:hover {
+    background-color: #45a049;
+}
+
+    </style>
 </head>
 <body>
-    <header>
-        <h1>
-            MongoDB: <small>Personas</small></h1>
-    </header>
-    <main>
-        <table class="table table-striped">
-            <thead>
+    <h1>Lista de Personas</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>NSS</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Tipo de Sangre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let i = 0; i < persons.length; i++) { %>
                 <tr>
-                    <th>NSS</th>
-                    <th>Nombre</th>
-                    <th>Tipo de Sangre</th>
-                    <th>Edad</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <% for (let i = 0; i < Persons.length; i++) { %>
-                <tr>
-                    <td><%= Persons[i].nss %></td>
-                    <td><%= Persons[i].nombre %></td>
-                    <td><%= Persons[i].edad %></td>
-                    <td><%= Persons[i].tipoSangre %></td>
-                    <td><a href="">Delete</a></td>
-                    <td><a href="">Update</a></td>
-                </tr>
-                <% } %>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="6" style="text-align: right;">
-                        <h5 class="float-md-end">Total de Registros: <b><%= Object.keys(Persons).length %></b></h5>
+                    <td><%= persons[i].nss %></td>
+                    <td><%= persons[i].name %></td>
+                    <td><%= persons[i].age %></td>
+                    <td><%= persons[i].bloodGroup %></td>
+                    <td>
+                        <a href="/updatePerson/<%= persons[i]._id %>" class="btn btn-primary">Actualizar</a>
+                        <a href="/deletePerson/<%= persons[i]._id %>" class="btn btn-primary">Eliminar</a>
                     </td>
                 </tr>
-            </tfoot>
-        </table>
-        <footer>
-            <a href="./addPerson" class="btn btn-primary">Agregar</a>
-        </footer>
-    </main>
+            <% } %>
+        </tbody>
+    </table>
+    <footer>
+        <a href="/addPerson" class="btn btn-primary">Agregar</a>
+    </footer>
 </body>
 </html>

@@ -12,9 +12,10 @@ const port = process.env.PORT || 3000; //configura el puerto
 
 app.set('view engine', 'ejs'); // estableve el valor para el motor de vistas
 app.use(express.urlencoded({ extended: false })); //parsea el body de las peticiones POST
-app.use("/assets", express.static(__dirname + '/../public'));
-console.log(__dirname + '/../public');
 app.use(personsRouters); //agrega el router de personas
+
+
+
 
 
 // Conectar a la base de datos y levantar el servidor
